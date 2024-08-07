@@ -1,96 +1,79 @@
-import Login from "./Components/Auth/Login/Login";
-import Registration from "./Components/Auth/Registration/Registration";
-import DoctorList from "./Components/Pages/DoctorList";
-import Home from "./Components/Pages/Home";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import PrivateCom from "./Components/Pages/PrivateCom";
-import Header from "./Components/Common/Header";
-import DoctorDetails from "./Components/Pages/DoctorDetails";
-import ContactForm from "./Components/Pages/ContactForm";
-import AuthProvider from "./Components/Utils/AuthProvider";
-import AppStore from "./Components/Utils/Store/AppStore";
+import React, { Suspense } from "react";
+import Header from "./Component/Layout/Header/Header";
 import { Provider } from "react-redux";
+import AppStore from "./Store/AppStore";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./Component/Home";
+import Footer from "./Component/Layout/Footer/Footer";
+import "react-toastify/dist/ReactToastify.css";
 
-import AllBlog from "./Components/Pages/Blog/AllBlog";
+import { lazy } from "react";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import UserProfile from "./Components/Pages/Profile/UserProfile";
-import Footer from "./Components/Common/Footer";
-const queryClient = new QueryClient();
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./customQueryHooks/globalHooks/globalHooks";
+import { ToastContainer } from "react-toastify";
+import ErrorPage from "./Utils/Errorpage/ErrorPage";
 
-const PublicRoute = [
-    {
-        path: "/login",
-        Component: <Login />,
-    },
-    {
-        path: "/reg",
-        Component: <Registration />,
-    },
-    {
-        path: "/",
-        Component: <Home />,
-    },
+const Login = lazy(() => import("./Component/Auth/Login/Login"));
+const Registration = lazy(() =>
+    import("./Component/Auth/Registration/Registration")
+);
+const DoctorHome = lazy(() => import("./Component/Doctor/DoctorHome"));
+const Departments = lazy(() =>
+    import("./Component/Doctor/Departments/Departments")
+);
+const BlogList = lazy(() => import("./Component/Blog/BlogList"));
+const SingleBlog = lazy(() => import("./Component/Blog/SingleBlog"));
+const Doctorlist = lazy(() => import("./Component/Doctor/Doctorlist"));
+const DoctorDetails = lazy(() => import("./Component/Doctor/DoctorDetails"));
+
+const publicComponents = [
+    { path: "/login", component: <Login /> },
+    { path: "/registration", component: <Registration /> },
+    { path: "/", component: <Home /> },
 ];
 
-const PrivateComponent = [
-    {
-        path: "/alldoctor",
-        Component: <DoctorList />,
-    },
-    {
-        path: "/doctordetails/:id",
-        Component: <DoctorDetails />,
-    },
-    {
-        path: "/contactus",
-        Component: <ContactForm />,
-    },
-
-    {
-        path: "/allblog",
-        Component: <AllBlog />,
-    },
-    {
-        path: "/userprofile",
-        Component: <UserProfile />,
-    },
+const privateComponents = [
+    { path: "/doctorhome", component: <DoctorHome /> },
+    { path: "/departments", component: <Departments /> },
+    { path: "/bloglist", component: <BlogList /> },
+    { path: "/bloglist/:id", component: <SingleBlog /> },
+    { path: "/doctor/:deptName/:id", component: <Doctorlist /> },
+    { path: "/doctor/doctorDetails/:drId", component: <DoctorDetails /> },
 ];
 
-function App() {
+const App = () => {
     return (
-        <Provider store={AppStore}>
-            <QueryClientProvider client={queryClient}>
-                <AuthProvider>
-                    <Router>
-                        <Header />
-                        <Routes>
-                            {PublicRoute.map((page, i) => (
-                                <Route
-                                    key={i}
-                                    path={page.path}
-                                    element={page.Component}
-                                />
-                            ))}
-
-                            {PrivateComponent.map((route, i) => (
-                                <Route
-                                    key={i}
-                                    path={route.path}
-                                    element={
-                                        <PrivateCom>
-                                            {route.Component}
-                                        </PrivateCom>
-                                    }
-                                />
-                            ))}
-                        </Routes>
-                        <Footer />
-                    </Router>
-                </AuthProvider>
-            </QueryClientProvider>
-        </Provider>
+        <div>
+            <BrowserRouter>
+                <Suspense fallback=<h1>Loading...</h1>>
+                    <QueryClientProvider client={queryClient}>
+                        <Provider store={AppStore}>
+                            <Header />
+                            <Routes>
+                                {publicComponents.map((com, i) => (
+                                    <Route
+                                        key={i}
+                                        path={com.path}
+                                        element={com.component}
+                                    />
+                                ))}
+                                {privateComponents.map((com, i) => (
+                                    <Route
+                                        key={i}
+                                        path={com.path}
+                                        element={com.component}
+                                    />
+                                ))}
+                                <Route path="*" element={<ErrorPage />} />
+                            </Routes>
+                            <Footer />
+                        </Provider>
+                    </QueryClientProvider>
+                </Suspense>
+            </BrowserRouter>
+        </div>
     );
-}
+};
 
 export default App;
