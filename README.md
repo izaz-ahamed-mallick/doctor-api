@@ -45,8 +45,9 @@ The app is hosted on Netlify. You can view the live application at:
 
 ## Technologies Used
 - **Frontend:** React, Tailwind CSS
-- **Backend:** Node.js, Express (if applicable)
-- **Database:** MongoDB, PostgreSQL (if applicable)
+- **Data Fetching:** TanStack React Query
+- **State Management:** Redux Toolkit
+- **API Integration:** Through external APIs
 
 ## Contributing
 If you’d like to contribute to the project, please follow these guidelines:
