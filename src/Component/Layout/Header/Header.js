@@ -158,7 +158,7 @@ const Header = () => {
                     ) : (
                         <>
                             <Link
-                                to="/auth/registration"
+                                to="/registration"
                                 className="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded-full transition duration-200 transform hover:scale-105"
                             >
                                 Sign Up
@@ -254,13 +254,13 @@ const Header = () => {
                                 ) : (
                                     <>
                                         <Link
-                                            to="/auth/login"
+                                            to="/login"
                                             className="bg-blue-700 hover:bg-blue-600 text-white py-2 px-4 rounded-full transition duration-200 transform hover:scale-105"
                                         >
                                             Login
                                         </Link>
                                         <Link
-                                            to="/auth/registration"
+                                            to="/registration"
                                             className="bg-green-700 hover:bg-green-600 text-white py-2 px-4 rounded-full transition duration-200 transform hover:scale-105"
                                         >
                                             Sign Up
