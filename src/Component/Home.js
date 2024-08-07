@@ -12,6 +12,7 @@ import img2 from "../Images/img2.jpeg";
 import img3 from "../Images/img3.jpeg";
 import img4 from "../Images/img4.jpeg";
 import img5 from "../Images/img5.jpeg";
+import { useTitle } from "../FunctionalCustomHooks/useTitle";
 
 const images = [
     { src: img1, text: "Welcome to Our Clinic" },
@@ -22,6 +23,7 @@ const images = [
 ];
 
 const Home = () => {
+    useTitle("Home page");
     const [isClient, setIsClient] = useState(false);
     const isAuthenticate = useSelector((state) => state.Auth.isAuthenticate);
 

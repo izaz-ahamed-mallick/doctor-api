@@ -6,11 +6,13 @@ import logo from "../../../Images/logo.png";
 import { useSignUpMutation } from "../../../customQueryHooks/AuthQuery/Auth";
 import LoadingButton from "../../../Utils/LoadingButton/LoadingButton";
 import { Link } from "react-router-dom";
+import { useTitle } from "../../../FunctionalCustomHooks/useTitle";
 
 const Signup = () => {
     const [passwordVisible, setPasswordVisible] = useState(false);
     const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
     const [image, setImage] = useState(null);
+    useTitle("Registration");
 
     const handleImageChange = (e) => {
         setImage(URL.createObjectURL(e.target.files[0]));

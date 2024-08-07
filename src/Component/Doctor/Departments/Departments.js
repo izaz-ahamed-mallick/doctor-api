@@ -6,11 +6,14 @@ import HeroSection from "../../../Utils/HeroSection";
 import { useGetAllDepartment } from "../../../customQueryHooks/DoctorQuery/DoctorQuery";
 import { imgPath, sanitizeImagePath } from "../../../Helper";
 import Loader from "../../../Utils/Loader/Loader";
+import { useTitle } from "../../../FunctionalCustomHooks/useTitle";
+import ErrorPage from "../../../Utils/Errorpage/ErrorPage";
 
 const Departments = () => {
     const [expandedDept, setExpandedDept] = useState(null);
     const { data, isError, isLoading } = useGetAllDepartment();
     const navigate = useNavigate();
+    useTitle("Departments");
 
     if (isLoading)
         return (
@@ -19,7 +22,11 @@ const Departments = () => {
             </div>
         );
     if (isError)
-        return <div className="text-center p-8">Error loading departments</div>;
+        return (
+            <>
+                <ErrorPage error={"Error loading departments"} />
+            </>
+        );
 
     const handleLearnMore = (deptName) => {
         setExpandedDept((prev) => (prev === deptName ? null : deptName));

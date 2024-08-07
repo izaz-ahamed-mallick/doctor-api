@@ -3,8 +3,10 @@ import aboutImg from "../../Images/aboutUs2.jpeg"; // Adjust the path as needed
 
 import HeroSection2 from "../../Utils/HeroSection2";
 import ContactUsModal from "../../Utils/ContactModal";
+import { useTitle } from "../../FunctionalCustomHooks/useTitle";
 
 const AboutUs = () => {
+    useTitle("About us");
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleContactUsModal = () => {

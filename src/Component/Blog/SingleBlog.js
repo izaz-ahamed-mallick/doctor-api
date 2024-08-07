@@ -7,8 +7,11 @@ import CommentSection from "./Comment/CommentSection";
 import { imgPath, sanitizeImagePath } from "../../Helper";
 import HeroSection from "../../Utils/HeroSection";
 import Loader from "../../Utils/Loader/Loader";
+import { useTitle } from "../../FunctionalCustomHooks/useTitle";
+import ErrorPage from "../../Utils/Errorpage/ErrorPage";
 
 const SingleBlog = () => {
+    useTitle("Single Blog");
     const { id } = useParams(); // Changed from 'params'
     const navigate = useNavigate();
     const { data, isLoading, isError } = useGetSingleBlog(id);
@@ -19,7 +22,8 @@ const SingleBlog = () => {
                 <Loader />
             </>
         );
-    if (isError || !data) return <p>Failed to load blog post</p>;
+    if (isError || !data)
+        return <ErrorPage error={"Failed to load blog post"} />;
 
     return (
         <div className="bg-gray-100 min-h-screen flex flex-col">

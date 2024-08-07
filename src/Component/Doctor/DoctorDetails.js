@@ -6,11 +6,13 @@ import { useDoctorDetails } from "../../customQueryHooks/DoctorQuery/DoctorQuery
 import HeroSection from "../../Utils/HeroSection";
 import { imgPath, sanitizeImagePath } from "../../Helper";
 import Loader from "../../Utils/Loader/Loader";
+import { useTitle } from "../../FunctionalCustomHooks/useTitle";
+import ErrorPage from "../../Utils/Errorpage/ErrorPage";
 
 const DoctorDetails = () => {
     const params = useParams();
     const { drId } = params;
-
+    useTitle("Doctor Details");
     const { data, isError, isLoading } = useDoctorDetails(drId);
     const navigate = useNavigate(); // Initialize the navigate function
 
@@ -22,7 +24,9 @@ const DoctorDetails = () => {
         );
     if (isError)
         return (
-            <div className="text-center p-8">Error loading doctor details</div>
+            <>
+                <ErrorPage error={"Error loading doctor details"} />
+            </>
         );
 
     const { data: doctor } = data;

@@ -6,6 +6,7 @@ import { useGetUserDashBoard } from "../../customQueryHooks/UserQuery/userDashBo
 import ErrorPage from "../../Utils/Errorpage/ErrorPage";
 import Loader from "../../Utils/Loader/Loader";
 import { imgPath, sanitizeImagePath } from "../../Helper";
+import { useTitle } from "../../FunctionalCustomHooks/useTitle";
 
 const UserDashboard = () => {
     const cookie = new Cookies();
@@ -13,14 +14,14 @@ const UserDashboard = () => {
     const email = cookie.get("email");
     const phone = cookie.get("phone");
     const userId = cookie.get("userId");
-
+    useTitle("User Dashboard");
     const { data, isError, isLoading } = useGetUserDashBoard(userId);
 
     if (isLoading) return <Loader />;
     if (isError)
         return (
             <>
-                <ErrorPage />
+                <ErrorPage error={"Failed to load user dashboard"} />
             </>
         );
 

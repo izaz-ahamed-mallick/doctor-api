@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Changed from 'next/link'
 
 import blogPlaceholder from "../../Images/singleBlog.jpeg";
@@ -12,8 +12,11 @@ import {
 } from "../../customQueryHooks/BlogQuery/BlogQuery";
 import Pagination from "../../Utils/Pagination";
 import Loader from "../../Utils/Loader/Loader";
+import { useTitle } from "../../FunctionalCustomHooks/useTitle";
+import ErrorPage from "../../Utils/Errorpage/ErrorPage";
 
 const BlogList = () => {
+    useTitle("Blog List");
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchValue, setSearchValue] = useState("");
@@ -27,6 +30,13 @@ const BlogList = () => {
         return (
             <>
                 <Loader />
+            </>
+        );
+
+    if (isError)
+        return (
+            <>
+                <ErrorPage title={"Failed to load blog"} />
             </>
         );
 

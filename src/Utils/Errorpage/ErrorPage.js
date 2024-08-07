@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import errorGif from "../../Images/error2.png"; // Replace with the actual path to your animated error GIF
 
-const ErrorPage = () => {
+const ErrorPage = ({ error }) => {
     const navigate = useNavigate();
 
     const handleGoBack = () => {
@@ -47,7 +47,7 @@ const ErrorPage = () => {
                     animate={{ x: 0 }}
                     transition={{ type: "spring", stiffness: 100 }}
                 >
-                    We can't find the page you're looking for.
+                    {error || "We can't find the page you're looking for"}
                 </motion.p>
                 <motion.button
                     onClick={handleGoBack}

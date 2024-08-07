@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import bgImg from "../../Images/DoctorPage.jpeg";
 
 import useScrollToSection from "../../FunctionalCustomHooks/useScrollToSection";
+import { useTitle } from "../../FunctionalCustomHooks/useTitle";
 
 // Dynamically import components to mimic `React.Suspense`
 const AboutUs = lazy(() => import("../About/AboutUs"));
@@ -10,6 +11,7 @@ const BlogHome = lazy(() => import("../Blog/BlogHome"));
 const Loader = () => <div>Loading...</div>; // Placeholder for your Loader component
 
 const DoctorList = () => {
+    useTitle("Doctor Home Page");
     const [isVisible, setIsVisible] = useState(false);
     const { aboutUsRef, blogHomeRef, homeRef } = useScrollToSection();
 

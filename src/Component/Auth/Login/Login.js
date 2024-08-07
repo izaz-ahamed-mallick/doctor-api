@@ -6,8 +6,11 @@ import logo from "../../../Images/logo.png";
 import { useLoginMutation } from "../../../customQueryHooks/AuthQuery/Auth";
 import LoadingButton from "../../../Utils/LoadingButton/LoadingButton";
 import { Link } from "react-router-dom";
+import { useTitle } from "../../../FunctionalCustomHooks/useTitle";
 
 const Login = () => {
+    useTitle("Login");
+
     const {
         register,
         handleSubmit,

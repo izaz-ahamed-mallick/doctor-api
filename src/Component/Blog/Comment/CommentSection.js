@@ -8,10 +8,11 @@ import { Cookies } from "react-cookie";
 import Comment from "./Commnet";
 import LoadingButton from "../../../Utils/LoadingButton/LoadingButton";
 import ShimmerLoader from "../../../Utils/CommentLoader/ShimmerLoader";
+import ErrorPage from "../../../Utils/Errorpage/ErrorPage";
 
 const CommentSection = ({ id }) => {
     const cookie = new Cookies();
-    const { data, isLoading } = useSingleComment(id);
+    const { data, isLoading, isError } = useSingleComment(id);
     const { mutate, isPending } = useCreateComment();
 
     const {
@@ -37,6 +38,13 @@ const CommentSection = ({ id }) => {
                 <ShimmerLoader />
             </>
         );
+    if (isError)
+        return (
+            <>
+                <ErrorPage />
+            </>
+        );
+
     return (
         <div className="flex flex-col items-center py-12 px-6">
             <div className="bg-gray-100 p-8 rounded-lg shadow-lg max-w-4xl w-full">

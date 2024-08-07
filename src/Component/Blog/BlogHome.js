@@ -2,8 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom"; // Use react-router-dom for navigation
 import blogImg from "../../Images/BlogHome.jpeg";
 import HeroSection2 from "../../Utils/HeroSection2";
+import { useTitle } from "../../FunctionalCustomHooks/useTitle";
 
 const BlogHome = () => {
+    useTitle("Blog home");
     const navigate = useNavigate();
 
     const handleNavigate = () => {

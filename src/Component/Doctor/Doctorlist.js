@@ -14,15 +14,16 @@ import HeroSection from "../../Utils/HeroSection";
 import LoadingButton from "../../Utils/LoadingButton/LoadingButton";
 import AppointmentModal from "../../Utils/AppoinmentModal";
 import Loader from "../../Utils/Loader/Loader";
+import { useTitle } from "../../FunctionalCustomHooks/useTitle";
+import ErrorPage from "../../Utils/Errorpage/ErrorPage";
 
 const Doctorlist = () => {
     const { mutate, isPending } = useCreateAppointment();
     const cookie = new Cookies();
     const params = useParams();
-    console.log(params);
+    useTitle("Doctor List");
 
     const { id, deptName } = params;
-    console.log(id);
 
     const { data, isError, isLoading } = useDepartmentDoctor(id);
     const [isModalOpen, setModalOpen] = useState(false);
@@ -64,7 +65,11 @@ const Doctorlist = () => {
     }
 
     if (isError) {
-        return <div className="text-center p-8">Error loading doctors</div>;
+        return (
+            <>
+                <ErrorPage error={"Error loading doctors"} />
+            </>
+        );
     }
 
     return (
