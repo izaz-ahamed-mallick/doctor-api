@@ -11,8 +11,11 @@ import { lazy } from "react";
 
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./customQueryHooks/globalHooks/globalHooks";
-import { ToastContainer } from "react-toastify";
+
 import ErrorPage from "./Utils/Errorpage/ErrorPage";
+import PrivateComponent from "./Component/Middleware/PrivateComponent";
+
+//Lazy load import
 
 const Login = lazy(() => import("./Component/Auth/Login/Login"));
 const Registration = lazy(() =>
@@ -26,6 +29,9 @@ const BlogList = lazy(() => import("./Component/Blog/BlogList"));
 const SingleBlog = lazy(() => import("./Component/Blog/SingleBlog"));
 const Doctorlist = lazy(() => import("./Component/Doctor/Doctorlist"));
 const DoctorDetails = lazy(() => import("./Component/Doctor/DoctorDetails"));
+const UserDashboard = lazy(() => import("./Component/User/UserDashboard"));
+
+//Lazy load import
 
 const publicComponents = [
     { path: "/login", component: <Login /> },
@@ -40,6 +46,7 @@ const privateComponents = [
     { path: "/bloglist/:id", component: <SingleBlog /> },
     { path: "/doctor/:deptName/:id", component: <Doctorlist /> },
     { path: "/doctor/doctorDetails/:drId", component: <DoctorDetails /> },
+    { path: "/userdashboard", component: <UserDashboard /> },
 ];
 
 const App = () => {
@@ -62,7 +69,11 @@ const App = () => {
                                     <Route
                                         key={i}
                                         path={com.path}
-                                        element={com.component}
+                                        element={
+                                            <PrivateComponent>
+                                                {com.component}
+                                            </PrivateComponent>
+                                        }
                                     />
                                 ))}
                                 <Route path="*" element={<ErrorPage />} />

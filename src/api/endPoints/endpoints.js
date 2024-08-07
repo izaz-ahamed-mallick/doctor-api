@@ -15,4 +15,5 @@ export const endpoints = {
         commentSec: "/getblogcomment",
         createCommnet: "/createblogcomment",
     },
+    user: "/userdash",
 };
