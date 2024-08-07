@@ -8,7 +8,7 @@ const PrivateComponent = ({ children }) => {
     const token = cookie.get("token");
 
     return (
-        <div className="h-screen">
+        <div className="min-h-screen">
             {token !== null && token !== undefined ? (
                 children
             ) : (
