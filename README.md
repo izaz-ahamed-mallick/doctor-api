@@ -1,21 +1,24 @@
 # Doctor Consult App
 
 ## Overview
-The Doctor Consult App is a modern web application designed for doctor consultations and management. It provides a comprehensive suite of features including user registration, profile management, blog interactions, and appointment scheduling. The app is built using React and Tailwind CSS, ensuring a responsive and aesthetically pleasing experience across devices.
+The Doctor Consult App is a modern web application designed for doctor consultations and management. It provides a comprehensive suite of features including user registration, profile management, blog interactions, and appointment scheduling. The app is built using React, Tailwind CSS, TanStack React Query, and Redux Toolkit, ensuring a responsive and robust user experience across devices.
 
 ## Features
 - **User Registration:** Secure sign-up process with form validation.
 - **Image Upload:** Ability to upload profile images during registration.
 - **Comments Section:** Dynamic comments with real-time updates.
 - **Responsive Design:** Fully responsive and modern design using Tailwind CSS.
-- **Login:** Secure login functionality for registered users.
+- **Login:** Secure login functionality for registered users. Note: Users must be logged in to access any services.
 - **Doctor List:** View a list of available doctors with their profiles.
 - **Department Listing:** Display departments and their details.
 - **Appointments:** Schedule and manage appointments with doctors.
 - **Contact Us:** Contact form for user inquiries.
+
+### Blog Features
 - **Blog List:** View a list of available blogs.
-- **Blog Comments:** Users can comment on every blog post.
-- **Dashboard:** A dashboard for checking which doctor appointments have been taken.
+- **Search Blogs:** Search for blogs by keywords.
+- **Filter Blogs:** Filter blogs based on categories or tags.
+- **Blog Comments:** Add and view comments on individual blog posts.
 
 ## Installation
 To get started with the Doctor Consult App locally, follow these steps:
@@ -44,10 +47,9 @@ The app is hosted on Netlify. You can view the live application at:
 [https://main--doctorconsultapp.netlify.app/](https://main--doctorconsultapp.netlify.app/)
 
 ## Technologies Used
-- **Frontend:** React, Tailwind CSS
-- **Data Fetching:** TanStack React Query
-- **State Management:** Redux Toolkit
-- **API Integration:** Through external APIs
+- **Frontend:** React, Tailwind CSS, TanStack React Query, Redux Toolkit
+- **Backend:** API-based data fetching
+- **Database:** MongoDB, PostgreSQL (if applicable)
 
 ## Contributing
 If you’d like to contribute to the project, please follow these guidelines:
