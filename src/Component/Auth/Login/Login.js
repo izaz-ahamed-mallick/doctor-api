@@ -97,7 +97,7 @@ const Login = () => {
                         )}
                     </div>
                     <div className="mb-2 text-red-500">
-                        *Use placeholder email and password for login.
+                        *Use placeholder email and password for login..
                     </div>
                     <div className="flex items-center justify-between flex-col gap-3 md:flex-row">
                         <LoadingButton
