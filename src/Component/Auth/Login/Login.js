@@ -61,7 +61,7 @@ const Login = () => {
                             type="email"
                             id="email"
                             className="shadow text-sm sm:text-md md:text-lg appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Enter your email"
+                            placeholder="izazahamedmallick@gmail.com"
                         />
                         {errors.email && (
                             <p className="text-red-500 text-xs mt-1">
@@ -88,13 +88,16 @@ const Login = () => {
                             type="password"
                             id="password"
                             className="shadow text-sm sm:text-md md:text-lg appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            placeholder="Enter your password"
+                            placeholder="Sujan8569@"
                         />
                         {errors.password && (
                             <p className="text-red-500 text-xs mt-1">
                                 {errors.password.message}
                             </p>
                         )}
+                    </div>
+                    <div className="mb-2 text-red-500">
+                        *Use placeholder email and password for login.
                     </div>
                     <div className="flex items-center justify-between flex-col gap-3 md:flex-row">
                         <LoadingButton
