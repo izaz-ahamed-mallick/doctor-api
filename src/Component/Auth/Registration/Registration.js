@@ -40,7 +40,7 @@ const Signup = () => {
         formData.append("email", data.email);
         formData.append("phone", data.phone);
         formData.append("password", data.password);
-        formData.append("confirmPassword", data.confirmPassword);
+        formData.append("forget", data.confirmPassword);
         formData.append("image", data.image[0]);
 
         mutate(formData);
